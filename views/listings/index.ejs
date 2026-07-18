@@ -1,13 +1,13 @@
+<% layout ("/layouts/boilerplate")-%>
 
-<% layout ("/layouts/boilerplate")-%> 
 
-    
     <style>
-        #filters{
+        #filters {
             display: flex;
             flex-wrap: wrap;
         }
-        .filter{
+
+        .filter {
             text-align: center;
             margin-right: 3.5rem;
             margin-top: 2rem;
@@ -17,86 +17,74 @@
         .filter p {
             font-size: 1rem;
         }
-        .filter:hover{
+
+        .filter:hover {
             opacity: 1;
             cursor: pointer;
         }
     </style>
 
-     <div id="filters">
-        <div class="filter">
-            <div><i class="fa-solid fa-fire"></i></div>
-             <p>Trending</p>
-        </div>
-     
-
-        <div class="filter">
-            <div><i class="fa-solid fa-bed"></i></div>
-             <p>Rooms</p>
-        </div>
-
-
-         <div class="filter">
-            <div><i class="fa-solid fa-mountain-city"></i></div>
-             <p>Iconic Cities</p>
-        </div>
-
-         <div class="filter">
-            <div><i class="fa-solid fa-panorama"></i></div>
-             <p>Amazing Views</p>
-        </div>
-
-         <div class="filter">
-            <div><i class="fa-solid fa-mountain"></i></div>
-             <p>Mountains</p>
-        </div>
-
-
-         <div class="filter">
-            <div><i class="fa-brands fa-fort-awesome"></i></div>
-             <p>Castles</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-person-swimming"></i></div>
-             <p>Amazing Pools</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-tent"></i></div>
-             <p>Camping</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-tractor"></i></div>
-             <p>Farms</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-person-skiing-nordic"></i></div>
-             <p>Arctic</p>
-        </div>
-
-
-        </div>
-
-
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-3 mt-3">
-        <% for(let listing of allListings){ %>
-            <a href="/listings/<%= listing._id %> " class="listing-link mb-3">
-                <div class="card col">
-  <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-image" style="height: 20rem;" >
-  <div class="card-img-overlay"></div>
-  <div class="card-body">
-    <p class="card-text">
-       <b> <%= listing.title %> </b><br> 
-        &#8377;<%= listing.price.toLocaleString("en-IN") %> / night
-    </p>
-  </div>
-</div>
+    <div id="filters">
+        <% selectedCategory=selectedCategory || "" ; %>
+            <a href="/listings?category=Trending"
+                class="filter filter-link <%= selectedCategory === 'Trending' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
             </a>
 
-<% } %>
+            <a href="/listings?category=Rooms"
+                class="filter filter-link <%= selectedCategory === 'Rooms' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+            </a>
+
+            <a href="/listings?category=Iconic Cities"
+                class="filter filter-link <%= selectedCategory === 'Iconic Cities' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p>Iconic Cities</p>
+            </a>
+
+            <a href="/listings?category=Amazing Views"
+                class="filter filter-link <%= selectedCategory === 'Amazing Views' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-panorama"></i></div>
+                <p>Amazing Views</p>
+            </a>
+
+            <a href="/listings?category=Mountains"
+                class="filter filter-link <%= selectedCategory === 'Mountains' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-mountain"></i></div>
+                <p>Mountains</p>
+            </a>
+
+            <a href="/listings?category=Castles"
+                class="filter filter-link <%= selectedCategory === 'Castles' ? 'active-filter' : '' %>">
+                <div><i class="fa-brands fa-fort-awesome"></i></div>
+                <p>Castles</p>
+            </a>
+
+            <a href="/listings?category=Amazing Pools"
+                class="filter filter-link <%= selectedCategory === 'Amazing Pools' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p>Amazing Pools</p>
+            </a>
+
+            <a href="/listings?category=Camping"
+                class="filter filter-link <%= selectedCategory === 'Camping' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-tent"></i></div>
+                <p>Camping</p>
+            </a>
+
+            <a href="/listings?category=Farms"
+                class="filter filter-link <%= selectedCategory === 'Farms' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-tractor"></i></div>
+                <p>Farms</p>
+            </a>
+
+            <a href="/listings?category=Arctic"
+                class="filter filter-link <%= selectedCategory === 'Arctic' ? 'active-filter' : '' %>">
+                <div><i class="fa-solid fa-person-skiing-nordic"></i></div>
+                <p>Arctic</p>
+            </a>
 
     </div>
 
@@ -104,3 +92,24 @@
 
 
 
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-3 mt-3">
+        <% for(let listing of allListings){ %>
+            <a href="/listings/<%= listing._id %> " class="listing-link mb-3">
+                <div class="card col">
+                    <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-image" style="height: 20rem;">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>
+                                <%= listing.title %>
+                            </b><br>
+                            &#8377;<%= listing.price.toLocaleString("en-IN") %> / night
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+            <% } %>
+
+    </div>
