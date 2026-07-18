@@ -66,19 +66,19 @@ body{
 }
 
 .card-img-top{
-    border-radius: 1rem !important;
+    border-radius: 0.3rem !important;
     width: 100% !important;
     object-fit: cover !important;
-
 }
 
 .card-body{
-    padding: 0 !important;
+      padding: 0.6rem 0.4rem !important; 
 
 }
 
 .card-text p{
     font: weight 400 !important;
+    margin-top: 0.3rem !important;
 }
 
 .listing-link{
